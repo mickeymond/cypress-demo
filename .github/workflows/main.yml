@@ -8,15 +8,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install Dependencies
+      - name: Install & Run Tests
         uses: actions/setup-node@v3
       - run: npm install
-
-      - name: Run Cypress Test
-        uses: cypress-io/github-action@v5
-        with:
-          record: true
-          install: false
+      - run: npm run test:ci
         env:
           # pass GitHub token to detect new build vs re-run build
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
